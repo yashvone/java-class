@@ -11,7 +11,7 @@ abstract class themepark{
 }
 
 class queensland extends themepark{
-	boolean[] Games = new boolean[30];
+	static boolean[] Games = new boolean[30];
 	queensland() {
 		playGame();
 	}
@@ -54,16 +54,27 @@ class wonderla extends themepark{
 
 public class abstractclass {
 	public static void main(String[] args) {
+		boolean stop = false;
 		Scanner s = new Scanner(System.in);
-		while(true) {
-			System.out.println("1. Queenspark\n2. Wonderla\nChoose the themepark: ");
+		System.out.println("Enter number for adults: ");
+		int n = s.nextInt();
+		System.out.println("Enter number of children: ");
+		int m = s.nextInt(), c = 0;
+		while(!stop) {
+			System.out.println("1. Queenspark\n2. Wonderla\n3. Exit\nChoose the themepark: ");
 			int ch = s.nextInt();
 			switch(ch) {
 			case 1: queensland q = new queensland();
+					c = q.cost(m, n);
 					break;
 			case 2: wonderla w = new wonderla();
+					c = w.cost(m, n);
+					break;
+			case 3: stop = true;
 					break;
 			}
 		}
+		System.out.println("Cost for "+n+" adults & "+m+" children: "+c);
+
 	}
 }
